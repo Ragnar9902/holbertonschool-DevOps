@@ -9,7 +9,7 @@ lint: ## test the app
 unit-tests: ## unit test
 		go test -v -short -coverprofile=coverage-units.out
 integration-tests: ## make integration tests 
-		go test -v -run -coverprofile=coverage-integrations.out
+		go test -v -short -coverprofile=coverage-integrations.out
 stop: ## stop the app in the server
 		kill "$(shell pgrep awesome-api)"
 test: ## custom test for the api
