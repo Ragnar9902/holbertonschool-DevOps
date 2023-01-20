@@ -4,7 +4,7 @@ stop:  stop the app in the server
 test:  unit test for the api
 run:  run the app in the local server
 lint: test the app
-unit-test:  unit test
+unit-tests:  unit test
 help:  Show this help.
 
 # Prerequisites:

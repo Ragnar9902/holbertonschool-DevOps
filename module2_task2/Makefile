@@ -6,7 +6,7 @@ clean: ## remuve the executable file
 		-rm awesome-api
 		-rm awesome-api.log
 lint: ## test the app
-unit-test: ## unit test
+unit-tests: ## unit test
 		go test -v -short -coverprofile=coverage-units.out
 stop: ## stop the app in the server
 		kill "$(shell pgrep awesome-api)"
