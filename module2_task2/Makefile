@@ -7,7 +7,7 @@ clean: ## remuve the executable file
 		-rm awesome-api.log
 lint: ## test the app
 unit-tests: ## unit test
-		go test -v -short -coverprofile=coverage-units.out > coverage-units.out
+		go test -v -short -coverprofile=coverage-units.out
 stop: ## stop the app in the server
 		kill "$(shell pgrep awesome-api)"
 test: ## custom test for the api

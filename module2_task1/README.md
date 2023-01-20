@@ -4,8 +4,8 @@ stop:  stop the app in the server
 test:  unit test for the api
 run:  run the app in the local server
 help:  Show this help.
-
-Prerequisites
+lint: test the app
+# Prerequisites
 
 The following elements are required In addition to the previous module (“Module 1: Introduction to DevOps: Automate Everything to Focus on What Really Matters”) prerequisites.
 Concepts
@@ -22,7 +22,7 @@ You should have a basic knowledge on the following concepts:
     Understand the basics of the HTTP protocol (client/server, verbs, headers)
 
 Tooling
-
+# lifecycle
 This project needs the following tools / services:
 
     Same tools as previous module

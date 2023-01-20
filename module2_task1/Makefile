@@ -7,6 +7,7 @@ clean: ## remuve the executable file
 		-rm awesome-api.log
 stop: ## stop the app in the server
 		kill "$(shell pgrep awesome-api)"
+lint: ## test the app
 test: ## unit test for the api
 		curl http://localhost:9999
 		curl http://localhost:9999/health
