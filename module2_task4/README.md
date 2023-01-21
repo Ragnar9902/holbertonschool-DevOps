@@ -8,6 +8,7 @@ unit-tests:  unit test
 integration-tests: make integration tests
 help:  Show this help.
 check: test the app
+post: Create a new blog post whose filename and title come fro
 validate: W3C validator
 
 # Prerequisites:
