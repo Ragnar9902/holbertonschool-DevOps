@@ -11,3 +11,5 @@ check: ## test the app
 validate: ## W3C validator
 		@make build
 		@./w3c_validator.py ./dist/index.html || true
+help: ##shows commands usage information
+		@fgrep -h "##" $(MAKEFILE_LIST) | fgrep -v fgrep | sed -e 's/\\$$//' | sed -e 's/##//'
