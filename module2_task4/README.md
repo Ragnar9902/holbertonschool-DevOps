@@ -7,6 +7,8 @@ lint: test the app
 unit-tests:  unit test
 integration-tests: make integration tests
 help:  Show this help.
+check: test the app
+validate: W3C validator
 
 # Prerequisites:
 
