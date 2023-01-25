@@ -36,10 +36,10 @@ lint: ## make lint on the files
 	@golangci-lint run
 
 unit-tests: ## make unit tests on the files
-	sudo docker run --rm --volume=$(shell pwd):/app --workdir=/app golang:1.15.8-buster go test -v -short -coverprofile=coverage-units.out
+	@sudo docker run --rm --volume=$(shell pwd):/app --workdir=/app golang:1.15.8-buster go test -v -short -coverprofile=coverage-units.out
 
 integration-tests: ## make unit tests on the files
-	sudo docker run --rm --volume=$(shell pwd):/app --workdir=/app golang:1.15.8-buster go test -v -coverprofile=coverage-integrations.out
+	@sudo docker run --rm --volume=$(shell pwd):/app --workdir=/app golang:1.15.8-buster go test -v -coverprofile=coverage-integrations.out
 
 
 run: ## Runs the application in background
