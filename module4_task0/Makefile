@@ -7,7 +7,7 @@ build: ## build everything
 	@make hugo-build
 
 go-build: ## build go
-	@go mod init github.com/paosua86/awesome-api
+	@go mod init github.com/Ragnar9902/awesome-api
 	@go get github.com/gorilla/mux
 	@go build
 
