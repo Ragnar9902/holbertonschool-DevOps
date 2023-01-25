@@ -11,6 +11,7 @@ go-build: ## build go
 	@go build
 
 hugo-build:  ##build hugo
+	-make go-build 
 	@hugo
 
 post: ##Create a new blog post whose filename and title come from the environment variables POST_TITLE and POST_NAME.
@@ -35,10 +36,11 @@ lint: ## make lint on the files
 	@golangci-lint run
 
 unit-tests: ## make unit tests on the files
-	@go test -v -short -coverprofile=coverage-units.out
+	sudo docker run --rm --volume=$(shell pwd):/app --workdir=/app golang:1.15.8-buster go test -v -short -coverprofile=coverage-units.out
 
 integration-tests: ## make unit tests on the files
-	@go test -v -coverprofile=coverage-integrations.out
+	sudo docker run --rm --volume=$(shell pwd):/app --workdir=/app golang:1.15.8-buster go test -v -coverprofile=coverage-integrations.out
+
 
 run: ## Runs the application in background
 	@./awesome-api >./awesome.log 2>&1 &
