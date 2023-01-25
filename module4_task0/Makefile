@@ -10,8 +10,7 @@ go-build: ## build go
 	@go get github.com/gorilla/mux
 	@go build
 
-hugo-build:  ##build hugo
-	-make go-build 
+hugo-build:  ##build hugo 
 	@hugo
 
 post: ##Create a new blog post whose filename and title come from the environment variables POST_TITLE and POST_NAME.
