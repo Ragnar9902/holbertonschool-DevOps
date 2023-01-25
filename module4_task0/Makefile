@@ -3,7 +3,6 @@ clean: ##Cleanup the content of the directory dist/
 	@-rm -rf awesome-api awesome.log coverage* go* ./dist
 
 build: ## build everything
-	@make go-build
 	@make hugo-build
 
 go-build: ## build go
