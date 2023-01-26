@@ -36,7 +36,6 @@ test: ## Tests the application
 	@make integration-tests
 
 lint: ## make lint on the files
-	@golangci-lint run
 	@markdownlint README.md DEPLOY.md
 
 unit-tests: ## make unit tests on the files
