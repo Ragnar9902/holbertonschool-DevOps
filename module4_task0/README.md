@@ -17,7 +17,6 @@
 *go-build:
 *hugo-build:
 
-
 "## Prerequisites"
     GNU Make in version 3.81+
     Go Hugo v0.80+
