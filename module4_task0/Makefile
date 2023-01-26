@@ -36,7 +36,8 @@ test: ## Tests the application
 	@make integration-tests
 
 lint: ## make lint on the files
-	@golangci-lint run
+	@sudo docker run --rm --volume=$(shell pwd):/app --workdir=/app golang:1.15.8-buster golangci-lint run
+	@markdownlint README.md DEPLOY.md
 
 unit-tests: ## make unit tests on the files
 	@sudo docker run --rm --volume=$(shell pwd):/app --workdir=/app golang:1.15.8-buster go test -v -short -coverprofile=coverage-units.out
