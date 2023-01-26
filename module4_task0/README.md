@@ -10,6 +10,10 @@
 *unit-tests:
 *integration-tests:
 *validate:
+*run:
+*check:
+*test:
+*stop:
 
 "## Prerequisites"
     GNU Make in version 3.81+
