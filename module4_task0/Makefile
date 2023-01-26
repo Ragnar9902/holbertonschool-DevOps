@@ -7,9 +7,9 @@ build: ## build everything
 	@make hugo-build
 
 go-build: ## build go
-	@go mod init github.com/Ragnar9902/awesome-api
-	@go get github.com/gorilla/mux
-	@go build
+	@sudo docker run --rm --volume=$(shell pwd):/app --workdir=/app golang:1.15.8-buster go mod init github.com/Ragnar9902/awesome-api
+	@sudo docker run --rm --volume=$(shell pwd):/app --workdir=/app golang:1.15.8-buster go get github.com/gorilla/mux
+	@sudo docker run --rm --volume=$(shell pwd):/app --workdir=/app golang:1.15.8-buster go build
 
 hugo-build:  ##build hugo 
 	@hugo
