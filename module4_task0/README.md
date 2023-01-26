@@ -14,6 +14,8 @@
 *check:
 *test:
 *stop:
+*go-build:
+*hugo-build:
 
 "## Prerequisites"
     GNU Make in version 3.81+
