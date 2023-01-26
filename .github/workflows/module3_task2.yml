@@ -1,5 +1,5 @@
 name: module3_task2
-on:
+on: push
   push:
     branches:
       - main
