@@ -23,6 +23,9 @@ help: ##shows commands usage information
 check: ## test the app
 	@markdownlint ./content/posts/*.md
 	@markdown-link-check ./content/posts/*.md
+package:  ## Generates a zip archive to deployment
+	-make build
+	zip awesome-website.zip awesome-api dist/
 validate: ## W3C validator
 	@make build
 	@./w3c_validator.py ./dist/index.html || true
