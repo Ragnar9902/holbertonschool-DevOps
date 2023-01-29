@@ -13,6 +13,6 @@ RUN curl -fsSL https://deb.nodesource.com/setup_19.x | bash - && apt-get install
 RUN npm install -g markdownlint-cli
 # hadolint ignore=DL3016,DL3059
 RUN npm install -g markdown-link-check
-# hadolint
+# hadolint ignore=DL4001,DL3047,DL3059
 RUN wget -O /bin/hadolint https://github.com/hadolint/hadolint/releases/download/v1.16.3/hadolint-Linux-x86_64
 RUN chmod +x /bin/hadolint
