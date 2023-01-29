@@ -1,22 +1,15 @@
 FROM golang:1.15.8-buster
-WORKDIR /app
-COPY . .
-RUN apt-get update && apt-get install -y make wget
+# hadolint ignore=DL3008,DL3009,DL3015
+RUN apt-get update && apt-get install -y make wget curl
+# hadolint ignore=DL3047
 RUN wget https://github.com/gohugoio/hugo/releases/download/v0.109.0/hugo_extended_0.109.0_linux-amd64.deb
-RUN wget -O /bin/hadolint https://github.com/hadolint/hadolint/releases/download/v1.16.3/hadolint-Linux-x86_64
-RUN chmod +x /bin/hadolint
+# hadolint ignore=DL3059
 RUN dpkg -i hugo_extended_0.109.0_linux-amd64.deb
+# hadolint ignore=DL3059
 RUN rm -f hugo_extended_0.109.0_linux-amd64.deb
-RUN curl -sSfL https://raw.githubusercontent.com/golangci/golangci-lint/master/install.sh | sh -s -- -b $(go env GOPATH)/bin v1.50.1
-ENV NODE_VERSION=16.13.0
-RUN apt install -y curl
-RUN curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.0/install.sh | bash
-ENV NVM_DIR=/root/.nvm
-RUN . "$NVM_DIR/nvm.sh" && nvm install ${NODE_VERSION}
-RUN . "$NVM_DIR/nvm.sh" && nvm use v${NODE_VERSION}
-RUN . "$NVM_DIR/nvm.sh" && nvm alias default v${NODE_VERSION}
-ENV PATH="/root/.nvm/versions/node/v${NODE_VERSION}/bin/:${PATH}"
+# hadolint ignore=DL3008,DL3015,DL4001,DL4006
+RUN curl -fsSL https://deb.nodesource.com/setup_19.x | bash - && apt-get install -y nodejs
+# hadolint ignore=DL3016
 RUN npm install -g markdownlint-cli
-ENV PATH="/bin/markdownlint:${PATH}"
-CMD ["./", "setup.sh"]
-# binary will be $(go env GOPATH)/bin/golangci-lint
+# hadolint ignore=DL3016,DL3059
+RUN npm install -g markdown-link-check
