@@ -40,8 +40,9 @@ test: ## Tests the application
 	@make integration-tests
 
 lint: ## make lint on the files
-	@sudo docker run --rm --volume=$(shell pwd):/app --workdir=/app awesome:build markdownlint README.md DEPLOY.md
-	@sudo docker run --rm --volume=$(shell pwd):/app --workdir=/app awesome:build hadolint --ignore DL4001 build/Dockerfile
+	-make build-docker
+	sudo docker run --rm --volume=$(shell pwd):/app --workdir=/app awesome:build markdownlint README.md DEPLOY.md
+	sudo docker run --rm --volume=$(shell pwd):/app --workdir=/app awesome:build hadolint --ignore DL4001 build/Dockerfile
 unit-tests: ## make unit tests on the files
 	@sudo docker run --rm --volume=$(shell pwd):/app --workdir=/app awesome:build go test -v -short -coverprofile=coverage-units.out
 
