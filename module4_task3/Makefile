@@ -5,7 +5,7 @@ IMAGE_TAG=$(shell git rev-parse --abbrev-ref HEAD)
 endif
 clean: ##Cleanup the content of the directory dist/
 	@-make stop
-	@-rm -rf awesome-api awesome.log coverage* go* ./dist
+	@-sudo rm -rf awesome-api awesome.log coverage* go* ./dist
 
 build: ## build everything
 	@make go-build
@@ -29,9 +29,9 @@ check: ## test the app
 	@sudo docker run --rm --volume=$(shell pwd):/app --workdir=/app awesome:build markdownlint ./content/posts/*.md
 	@sudo docker run --rm --volume=$(shell pwd):/app --workdir=/app awesome:build markdown-link-check ./content/posts/*.md
 package: build  ## Generates a zip archive and a docker image to deployment
-	docker build -t awesome:${IMAGE_TAG} .
-	docker save -o awesome_image.tar awesome:${IMAGE_TAG}
-	zip awesome-website.zip awesome-api dist/ awesome_image.tar
+	sudo docker build -t awesome:${IMAGE_TAG} .
+	sudo docker save -o awesome_image.tar awesome:${IMAGE_TAG}
+	sudo zip awesome-website.zip awesome-api dist/ awesome_image.tar
 validate: ## W3C validator
 	-make build
 	-git clone https://github.com/holbertonschool/W3C-Validator.git
