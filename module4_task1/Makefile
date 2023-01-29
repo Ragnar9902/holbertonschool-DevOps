@@ -28,8 +28,10 @@ package:  ## Generates a zip archive to deployment
 	-make build
 	zip awesome-website.zip awesome-api dist/
 validate: ## W3C validator
-	@make build
-	@./w3c_validator.py ./dist/index.html || true
+	-make build
+	-git clone https://github.com/holbertonschool/W3C-Validator.git
+	-./W3C-Validator/w3c_validator.py ./dist/index.html
+	-rm -rf ./W3C-Validator
 
 test: ## Tests the application
 	@-make build
