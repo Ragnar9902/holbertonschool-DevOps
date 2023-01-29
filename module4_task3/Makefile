@@ -1,4 +1,8 @@
 .PHONY: build
+IMAGE_TAG=$(shell git tag | tail -n 1)
+ifeq ($(strip $(IMAGE_TAG)),)
+IMAGE_TAG=$(shell git rev-parse --abbrev-ref HEAD)
+endif
 clean: ##Cleanup the content of the directory dist/
 	@-make stop
 	@-rm -rf awesome-api awesome.log coverage* go* ./dist
@@ -43,6 +47,7 @@ lint: ## make lint on the files
 	-make build-docker
 	sudo docker run --rm --volume=$(shell pwd):/app --workdir=/app awesome:build markdownlint README.md DEPLOY.md
 	sudo docker run --rm --volume=$(shell pwd):/app --workdir=/app awesome:build hadolint --ignore DL4001 build/Dockerfile
+	sudo docker run --rm --volume=$(shell pwd):/app --workdir=/app hadolint/hadolint hadolint Dockerfile
 unit-tests: ## make unit tests on the files
 	@sudo docker run --rm --volume=$(shell pwd):/app --workdir=/app awesome:build go test -v -short -coverprofile=coverage-units.out
 
@@ -59,3 +64,4 @@ stop: ## Stops the application
 docker-tests:	## Test the generated docker image using container-structure-test and cst.yml config file
 	-make build-docker
 	container-structure-test test --image awesome:build --config build/cst.yml
+	container-structure-test test --image awesome:${IMAGE_TAG} --config cst.yml
