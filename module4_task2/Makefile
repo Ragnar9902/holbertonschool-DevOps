@@ -24,9 +24,10 @@ help: ##shows commands usage information
 check: ## test the app
 	@sudo docker run --rm --volume=$(shell pwd):/app --workdir=/app awesome:build markdownlint ./content/posts/*.md
 	@sudo docker run --rm --volume=$(shell pwd):/app --workdir=/app awesome:build markdown-link-check ./content/posts/*.md
-package:  ## Generates a zip archive to deployment
-	-make build
-	zip awesome-website.zip awesome-api dist/
+package: build  ## Generates a zip archive and a docker image to deployment
+	docker build -t awesome:${IMAGE_TAG} .
+	docker save -o awesome_image.tar awesome:${IMAGE_TAG}
+	zip awesome-website.zip awesome-api dist/ awesome_image.tar
 validate: ## W3C validator
 	-make build
 	-git clone https://github.com/holbertonschool/W3C-Validator.git
@@ -40,7 +41,7 @@ test: ## Tests the application
 
 lint: ## make lint on the files
 	@sudo docker run --rm --volume=$(shell pwd):/app --workdir=/app awesome:build markdownlint README.md DEPLOY.md
-	@sudo docker run --rm --volume=$(shell pwd):/app --workdir=/app awesome:build hadolint --ignore DL4001 --ignore SC1090 --ignore DL3009 --ignore DL3008 --ignore DL3015 --ignore DL3016 --ignore DL4006 --ignore SC2046 build/Dockerfile
+	@sudo docker run --rm --volume=$(shell pwd):/app --workdir=/app awesome:build hadolint --ignore DL4001 build/Dockerfile
 unit-tests: ## make unit tests on the files
 	@sudo docker run --rm --volume=$(shell pwd):/app --workdir=/app awesome:build go test -v -short -coverprofile=coverage-units.out
 
