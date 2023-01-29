@@ -16,7 +16,7 @@
 *stop:
 *go-build:
 *hugo-build:
-
+*docker-tests:	## Test the generated docker image
 "## Prerequisites"
     GNU Make in version 3.81+
     Go Hugo v0.80+
