@@ -10,7 +10,7 @@ lint: ## test the app
 build-docker:	## Builds a Docker image from Dockerfile on build directory
 	@sudo docker build -t awesome:build ../
 unit-tests: ## make unit tests on the files
-	@sudo docker run --rm --volume=$(shell pwd):/app --workdir=/app awesome:build go test -v -short -coverprofile=coverage-units.out || echo $1
+	@go test -v -short -coverprofile=coverage-units.out || echo $1
 stop: ## stop the app in the server
 	@kill "$(shell pgrep awesome-api)" 2>&1 &
 test: ## custom test for the api
