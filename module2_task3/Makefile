@@ -1,6 +1,6 @@
 
 build: ## build a exeutable file
-		go build
+	@sudo docker run --rm --volume=$(shell pwd):/app --workdir=/app awesome:build go build
 clean: ## remuve the executable file
 		@make stop
 		@rm awesome-api 2>&1 &
@@ -9,9 +9,9 @@ clean: ## remuve the executable file
 		@rm -r coverage-units.out 2>&1 &
 lint: ## test the app
 unit-tests: ## unit test
-		go test -v -short -coverprofile=coverage-units.out || echo $1
+	@sudo docker run --rm --volume=$(shell pwd):/app --workdir=/app awesome:build go test -v -short -coverprofile=coverage-units.out || echo $1
 integration-tests: ## make integration tests 
-		go test -v -short -coverprofile=coverage-integrations.out || echo $1
+	@sudo docker run --rm --volume=$(shell pwd):/app --workdir=/app awesome:build go test -v -short -coverprofile=coverage-integrations.out || echo $1
 stop: ## stop the app in the server
 		@kill "$(shell pgrep awesome-api)" 2>&1 &
 test: ## custom test for the api
