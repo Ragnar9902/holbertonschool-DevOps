@@ -15,9 +15,8 @@ integration-tests: ## make integration tests
 stop: ## stop the app in the server
 		@kill "$(shell pgrep awesome-api)" 2>&1 &
 test: ## custom test for the api
-		curl http://localhost:9999
-		curl http://localhost:9999/health
-		curl http://localhost:9999/hello
+	@make unit-tests &
+	@make integration-tests
 run: ## run the app in the local server
 		./awesome-api >./awesome.log 2>&1 &
 help: ## Show this help.
