@@ -4,3 +4,4 @@ curl -L https://github.com/gohugoio/hugo/releases/download/v0.109.0/hugo_extende
 apt install ./hugo.deb
 rm hugo.deb
 make build
+["SETUPOK"]
