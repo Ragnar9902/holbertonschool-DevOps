@@ -1,21 +1,21 @@
 
 build: ## build a exeutable file
-		@go build
+	@sudo docker run --rm --volume=$(shell pwd):/app --workdir=/app awesome:build go build
 clean: ## remuve the executable file
-		@make stop
-		@rm awesome-api 2>&1 &
-		@rm awesome-api.log 2>&1 &
+	@make stop
+	@rm awesome-api 2>&1 &
+	@rm awesome-api.log 2>&1 &
 lint: ## test the app
-		@golangci-lint run
+	@sudo docker run --rm --volume=$(shell pwd):/app --workdir=/app awesome:build golangci-lint run
 unit-tests: ## make unit tests on the files
-		@go test -v -short -coverprofile=coverage-units.out || echo $1
+	@sudo docker run --rm --volume=$(shell pwd):/app --workdir=/app awesome:build go test -v -short -coverprofile=coverage-units.out || echo $1
 stop: ## stop the app in the server
-		@kill "$(shell pgrep awesome-api)" 2>&1 &
+	@kill "$(shell pgrep awesome-api)" 2>&1 &
 test: ## custom test for the api
-		@curl http://localhost:9999
-		@curl http://localhost:9999/health
-		@curl http://localhost:9999/hello
+	@curl http://localhost:9999
+	@curl http://localhost:9999/health
+	@curl http://localhost:9999/hello
 run: ## run the app in the local server
 		@./awesome-api >./awesome.log 2>&1 &
 help: ## Show this help.
-		@fgrep -h "##" $(MAKEFILE_LIST) | fgrep -v fgrep | sed -e 's/\\$$//' | sed -e 's/##//'
+	@fgrep -h "##" $(MAKEFILE_LIST) | fgrep -v fgrep | sed -e 's/\\$$//' | sed -e 's/##//'
