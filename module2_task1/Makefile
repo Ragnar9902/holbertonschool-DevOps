@@ -1,5 +1,5 @@
 build: ## build a exeutable file
-	@go build
+	@sudo docker run --rm --volume=$(shell pwd):/app --workdir=/app awesome:build go build
 clean: ## remuve the executable file
 	@make stop
 	@rm awesome-api 2>&1 &
